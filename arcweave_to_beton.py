@@ -1,10 +1,10 @@
 import json
-import yaml
+#import yaml
 
-quest_file_path     = input('Path of the questfile:        ')
-quest_version       = input('BetonQuest version (2.0|1.X): ')
-quest_use_titles    = input('Use titels (True|False):      ')
+quest_file_path     = input('Path of the questFile:        ')
 quester_name        = input('Name of the questNPC:         ')
+#quest_version       = input('BetonQuest version (2.0|1.X): ')
+#quest_use_titles    = input('Use titels (True|False):      ')
 
 with open(quest_file_path, 'r') as stream:
   data = json.load(stream)
