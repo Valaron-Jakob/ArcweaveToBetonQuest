@@ -18,56 +18,45 @@ conversation_format = {
     'player_options': {}
 }
 
-try:
-    if quest_use_titles == "True":
-        ids_to_titles = {}
+#Input the dataset and the desired folder name to get the folder element or NONE if the folder is not found
+def getComponentFolder(data, folder_name):
+    for key in data['components'].keys():
+        if data['components'][key]['name'] == folder_name:
+            folder = data['components'][key]
+            return folder
+        else:
+            folder = None
+    return folder
 
-        for key in data['elements'].keys():
-            title = data['elements'][key]['title'].replace('<p>','').replace('</p>','')
-            ids_to_titles[key] = title
+#Input the dataset and the current element to get a dict of target element keys and their respective titles
+def getElementPointers(data, element_key):
+    pointers = {}
+    for key in element_key['outputs']:
+        target_id = data['connections'][key]['targetid']
+        pointers[target_id] = data['elements'][target_id]['title']
+    return pointers
 
-            conversation_format['NPC_options'][title] = {
-                'text': data['elements'][key]['content'].replace('<p>','').replace('</p>',''),
-                'pointers': ','.join(data['elements'][key]['outputs'])
-            }
+#Input the dataset, the current element and the folder (events, conditions) to get a dict of target keys and their respective titles
+def getComponentPointers(data, element_key, folder):
+    pointers = {}
+    for key in element_key['components']:
+        if key in getComponentFolder(data, folder)['children']:
+            target_id = data['components'][key]
+            pointers[target_id] = target_id['name']
+    return pointers
 
-        for key in data['connections'].keys():
-            conversation_format['player_options'][key] = {
-                'text': data['connections'][key]['label'].replace('<p>','').replace('</p>',''),
-                'pointer': ids_to_titles[data['connections'][key]['targetid']]
-            }
 
-        conversation_format['first'] = ids_to_titles[quest_start_id]
 
-    else:
-        for key in data['elements'].keys():
-            conversation_format['NPC_options'][key] = {
-                'text': data['elements'][key]['content'].replace('<p>','').replace('</p>',''),
-                'pointers': ','.join(data['elements'][key]['outputs'])
-            }
+conv_options = {}
 
-        for key in data['connections'].keys():
-            conversation_format['player_options'][key] = {
-                'text': data['connections'][key]['label'].replace('<p>','').replace('</p>',''),
-                'pointer': data['connections'][key]['targetid']
-            }
+for key in data['elements'].keys():
+    conv_option_name = data['elements'][key]['title'].replace('<p>','').replace('</p>','')
+    conv_option_text = data['elements'][key]['content'].replace('<p>','').replace('</p>','')
 
-    if quest_version == str(2.0):
-        conversation_format = {
-            'conversations': {
-                quester_name.lower().replace(' ','_'): conversation_format.copy()
-            }
-        }
-
-    output_path = quest_file_path.split('\\')
-    output_path.pop()
-    output_path = '\\'.join(output_path)
-
-    with open(output_path + '\quest_conversation.yml', 'w', encoding='utf8') as outfile:
-        yaml.dump(conversation_format, outfile, default_flow_style=False, allow_unicode=True, sort_keys=False)
-
-    print('FINISHED: The conversion was successful!')
-    print('FINISHED: A file called "quest_conversation.yml" was created in the scripts folder.')
-
-except:
-    print('ERROR: The conversion was not successful!')
+    conv_options[key] = {
+        'conv_name': conv_option_name,
+        'conv_text': conv_option_text,
+        'pointers': getElementPointers(data, key),
+        'events': getComponentPointers(data, key, 'events'),
+        'conditions': getComponentPointers(data, key, 'conditions')
+    }
