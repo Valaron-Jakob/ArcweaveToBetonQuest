@@ -1,5 +1,5 @@
 import json
-#import yaml
+import yaml
 
 quest_file_path     = input('Path of the questFile:        ')
 quester_name        = input('Name of the questNPC:         ')
@@ -31,32 +31,43 @@ def getComponentFolder(data, folder_name):
 #Input the dataset and the current element to get a dict of target element keys and their respective titles
 def getElementPointers(data, element_key):
     pointers = {}
-    for key in element_key['outputs']:
+    for key in data['elements'][element_key]['outputs']:
         target_id = data['connections'][key]['targetid']
-        pointers[target_id] = data['elements'][target_id]['title']
+        pointers[target_id] = data['elements'][target_id]['title'].replace('<p>','').replace('</p>','')
     return pointers
 
 #Input the dataset, the current element and the folder (events, conditions) to get a dict of target keys and their respective titles
 def getComponentPointers(data, element_key, folder):
     pointers = {}
-    for key in element_key['components']:
+    for key in data['elements'][element_key]['components']:
         if key in getComponentFolder(data, folder)['children']:
-            target_id = data['components'][key]
-            pointers[target_id] = target_id['name']
+            pointers[key] = data['components'][key]['name'].replace('<p>','').replace('</p>','')
     return pointers
 
 
-
+#Construct a dict with all the conversation options and needed data
 conv_options = {}
 
 for key in data['elements'].keys():
     conv_option_name = data['elements'][key]['title'].replace('<p>','').replace('</p>','')
     conv_option_text = data['elements'][key]['content'].replace('<p>','').replace('</p>','')
+    conv_option_theme = data['elements'][key]['theme']
 
     conv_options[key] = {
         'conv_name': conv_option_name,
         'conv_text': conv_option_text,
+        'conv_theme': conv_option_theme,
         'pointers': getElementPointers(data, key),
         'events': getComponentPointers(data, key, 'events'),
         'conditions': getComponentPointers(data, key, 'conditions')
     }
+
+
+#print(conv_options)
+
+output_path = quest_file_path.split('\\')
+output_path.pop()
+output_path = '\\'.join(output_path)
+
+with open(output_path + '\quest_conversation.yml', 'w', encoding='utf8') as outfile:
+    yaml.dump(conv_options, outfile, default_flow_style=False, allow_unicode=True, sort_keys=False)
