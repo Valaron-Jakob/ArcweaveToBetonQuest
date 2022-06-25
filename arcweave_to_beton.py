@@ -63,6 +63,15 @@ for key in data['elements'].keys():
     }
 
 
+npc_color       = 'orange'
+player_color    = 'lightBlue'
+
+for key in conv_options.keys():
+    if conv_options[key]['conv_theme'] == npc_color:
+        conversation_format['NPC_options'][key] = conv_options[key]
+    if conv_options[key]['conv_theme'] == player_color:
+        conversation_format['player_options'][key] = conv_options[key]
+
 #print(conv_options)
 
 output_path = quest_file_path.split('\\')
@@ -70,4 +79,4 @@ output_path.pop()
 output_path = '\\'.join(output_path)
 
 with open(output_path + '\quest_conversation.yml', 'w', encoding='utf8') as outfile:
-    yaml.dump(conv_options, outfile, default_flow_style=False, allow_unicode=True, sort_keys=False)
+    yaml.dump(conversation_format, outfile, default_flow_style=False, allow_unicode=True, sort_keys=False)
