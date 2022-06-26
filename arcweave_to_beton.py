@@ -10,7 +10,7 @@ quester_name_snake  = quester_name.lower().replace(' ','_')
 with open(quest_file_path, 'r') as stream:
   data = json.load(stream)
 
-quest_start_id  = data['startingElement']
+quest_start_id  = data['elements'][data['startingElement']]['title'].replace('<p>','').replace('</p>','')
 
 
 #Input the dataset and the desired folder name to get the folder element or NONE if the folder is not found
