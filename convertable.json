@@ -1,0 +1,354 @@
+{
+    "startingElement": "1c9841b3-84b7-45a3-b819-03d2a3523bf4",
+    "boards": {
+        "fde6c03b-9c62-4d2d-82b9-9d6613cf6c6f": {
+            "name": "Testing Dialogue",
+            "notes": [
+                "c28fef43-3045-4297-90fc-6c2128e608d0",
+                "2888ceeb-dda5-46d3-a98b-0e4a4b2047bc",
+                "437eaabd-9ba7-4e07-bccb-db0c888a2cc3",
+                "6806260f-7408-41d5-9438-d65eb6713eb9"
+            ],
+            "jumpers": [],
+            "branches": [],
+            "elements": [
+                "e245e535-72c5-4da2-bc68-a056f1ceccc3",
+                "99b27506-15d4-4b83-bfed-77f38ac64dc0",
+                "4dff0be8-9a52-4b03-9101-706704ec6e74",
+                "1c9841b3-84b7-45a3-b819-03d2a3523bf4",
+                "5d94addf-ef0c-4808-9b1d-83c29030c9a2",
+                "5810c0a0-76d0-4894-92e7-37a347ac64e7",
+                "ad18a06d-2c64-4b4a-bcac-0edfdd5010de",
+                "8f8b2f6c-2a0c-4e4b-ab57-c6c309afdb1a",
+                "923cba11-12e0-4ffe-b67c-b44d74844055"
+            ],
+            "connections": [
+                "eaede22c-6e96-4a7a-9076-b64dfe893547",
+                "64b7d367-3259-4d13-8d9a-f41f01ea0fda",
+                "8799e31e-eb63-4f27-8a29-55dc004079ef",
+                "a8e85b4b-8cea-4a71-9fe2-0bf620a54fcb",
+                "1d183e8b-95b7-4b63-97a0-2a8489211f05",
+                "ae9772df-378d-40ca-9744-f826c90dce57",
+                "32a02f5a-cbf0-4197-bfaf-5a8fbbd3e9b6",
+                "5bc40640-6861-4efa-b4ca-efd8d49bb8dc",
+                "25f021e9-62b1-4032-9311-20d128ae0f9a",
+                "0e04d797-48ce-4a02-8c61-223664f8b1dd"
+            ]
+        }
+    },
+    "notes": {
+        "c28fef43-3045-4297-90fc-6c2128e608d0": {
+            "theme": "lightBlue",
+            "content": "<p><strong>player_option<\/strong><\/p>"
+        },
+        "2888ceeb-dda5-46d3-a98b-0e4a4b2047bc": {
+            "theme": "orange",
+            "content": "<p><strong>NPC_option<\/strong><\/p>"
+        },
+        "437eaabd-9ba7-4e07-bccb-db0c888a2cc3": {
+            "theme": "lightBlue",
+            "content": "<p><strong>player_option<\/strong><\/p>"
+        },
+        "6806260f-7408-41d5-9438-d65eb6713eb9": {
+            "theme": "orange",
+            "content": "<p><strong>NPC_option<\/strong><\/p>"
+        }
+    },
+    "elements": {
+        "e245e535-72c5-4da2-bc68-a056f1ceccc3": {
+            "theme": "lightBlue",
+            "title": "<p>More_Infos<\/p>",
+            "content": "<p>Do you remember where?<\/p>",
+            "outputs": [
+                "32a02f5a-cbf0-4197-bfaf-5a8fbbd3e9b6"
+            ],
+            "components": []
+        },
+        "99b27506-15d4-4b83-bfed-77f38ac64dc0": {
+            "theme": "lightBlue",
+            "title": "<p>Accept_Quest<\/p>",
+            "content": "<p>Im on my way!<\/p>",
+            "outputs": [
+                "25f021e9-62b1-4032-9311-20d128ae0f9a"
+            ],
+            "components": []
+        },
+        "4dff0be8-9a52-4b03-9101-706704ec6e74": {
+            "theme": "lightBlue",
+            "title": "<p>Deny_Quest<\/p>",
+            "content": "<p>No, sadly not<\/p>",
+            "outputs": [
+                "1d183e8b-95b7-4b63-97a0-2a8489211f05"
+            ],
+            "components": []
+        },
+        "1c9841b3-84b7-45a3-b819-03d2a3523bf4": {
+            "theme": "orange",
+            "title": "<p>Quest_Start<\/p>",
+            "content": "<p>Hello %player%, nice to see you. Do you have a minute?<\/p>",
+            "outputs": [
+                "eaede22c-6e96-4a7a-9076-b64dfe893547",
+                "8799e31e-eb63-4f27-8a29-55dc004079ef"
+            ],
+            "components": [
+                "e5823a26-08b0-4351-9431-fd9a0edac237",
+                "220ebafe-54a4-46ef-8d8c-5bebf68dcfe2"
+            ]
+        },
+        "5d94addf-ef0c-4808-9b1d-83c29030c9a2": {
+            "theme": "orange",
+            "title": "<p>Bye<\/p>",
+            "content": "<p>Thats sad, but maybe next time!<\/p>",
+            "outputs": [],
+            "components": []
+        },
+        "5810c0a0-76d0-4894-92e7-37a347ac64e7": {
+            "theme": "orange",
+            "title": "<p>Quest_Info<\/p>",
+            "content": "<p>I lost my pouch in the streets around the market. I would be really happy if you find it for me.<\/p>",
+            "outputs": [
+                "a8e85b4b-8cea-4a71-9fe2-0bf620a54fcb",
+                "ae9772df-378d-40ca-9744-f826c90dce57",
+                "5bc40640-6861-4efa-b4ca-efd8d49bb8dc"
+            ],
+            "components": [
+                "220ebafe-54a4-46ef-8d8c-5bebf68dcfe2",
+                "bda03c40-c114-4e1f-8955-ec6f39f37783"
+            ]
+        },
+        "ad18a06d-2c64-4b4a-bcac-0edfdd5010de": {
+            "theme": "orange",
+            "title": "<p>More_Info<\/p>",
+            "content": "<p>I think it was around the well on the west side of the market.<\/p>",
+            "outputs": [
+                "0e04d797-48ce-4a02-8c61-223664f8b1dd"
+            ],
+            "components": []
+        },
+        "8f8b2f6c-2a0c-4e4b-ab57-c6c309afdb1a": {
+            "theme": "orange",
+            "title": "<p>Quest_Accept<\/p>",
+            "content": "<p>Great! Ill wait here for your return.<\/p>",
+            "outputs": [],
+            "components": []
+        },
+        "923cba11-12e0-4ffe-b67c-b44d74844055": {
+            "theme": "lightBlue",
+            "title": "<p>Next_Step<\/p>",
+            "content": "<p>Yes, whats up?<\/p>",
+            "outputs": [
+                "64b7d367-3259-4d13-8d9a-f41f01ea0fda"
+            ],
+            "components": []
+        }
+    },
+    "connections": {
+        "eaede22c-6e96-4a7a-9076-b64dfe893547": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "1c9841b3-84b7-45a3-b819-03d2a3523bf4",
+            "targetid": "923cba11-12e0-4ffe-b67c-b44d74844055",
+            "sourceType": "elements",
+            "targetType": "elements"
+        },
+        "64b7d367-3259-4d13-8d9a-f41f01ea0fda": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "923cba11-12e0-4ffe-b67c-b44d74844055",
+            "targetid": "5810c0a0-76d0-4894-92e7-37a347ac64e7",
+            "sourceType": "elements",
+            "targetType": "elements"
+        },
+        "8799e31e-eb63-4f27-8a29-55dc004079ef": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "1c9841b3-84b7-45a3-b819-03d2a3523bf4",
+            "targetid": "4dff0be8-9a52-4b03-9101-706704ec6e74",
+            "sourceType": "elements",
+            "targetFace": "left",
+            "targetType": "elements"
+        },
+        "a8e85b4b-8cea-4a71-9fe2-0bf620a54fcb": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "5810c0a0-76d0-4894-92e7-37a347ac64e7",
+            "targetid": "4dff0be8-9a52-4b03-9101-706704ec6e74",
+            "sourceType": "elements",
+            "targetType": "elements"
+        },
+        "1d183e8b-95b7-4b63-97a0-2a8489211f05": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "4dff0be8-9a52-4b03-9101-706704ec6e74",
+            "targetid": "5d94addf-ef0c-4808-9b1d-83c29030c9a2",
+            "sourceType": "elements",
+            "targetFace": "left",
+            "targetType": "elements"
+        },
+        "ae9772df-378d-40ca-9744-f826c90dce57": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "5810c0a0-76d0-4894-92e7-37a347ac64e7",
+            "targetid": "e245e535-72c5-4da2-bc68-a056f1ceccc3",
+            "sourceType": "elements",
+            "targetType": "elements"
+        },
+        "32a02f5a-cbf0-4197-bfaf-5a8fbbd3e9b6": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "e245e535-72c5-4da2-bc68-a056f1ceccc3",
+            "targetid": "ad18a06d-2c64-4b4a-bcac-0edfdd5010de",
+            "sourceType": "elements",
+            "targetFace": "left",
+            "targetType": "elements"
+        },
+        "5bc40640-6861-4efa-b4ca-efd8d49bb8dc": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "5810c0a0-76d0-4894-92e7-37a347ac64e7",
+            "targetid": "99b27506-15d4-4b83-bfed-77f38ac64dc0",
+            "sourceType": "elements",
+            "targetFace": "left",
+            "targetType": "elements"
+        },
+        "25f021e9-62b1-4032-9311-20d128ae0f9a": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "99b27506-15d4-4b83-bfed-77f38ac64dc0",
+            "targetid": "8f8b2f6c-2a0c-4e4b-ab57-c6c309afdb1a",
+            "sourceType": "elements",
+            "targetFace": "left",
+            "targetType": "elements"
+        },
+        "0e04d797-48ce-4a02-8c61-223664f8b1dd": {
+            "type": "Straight",
+            "label": null,
+            "theme": "default",
+            "sourceid": "ad18a06d-2c64-4b4a-bcac-0edfdd5010de",
+            "targetid": "99b27506-15d4-4b83-bfed-77f38ac64dc0",
+            "sourceType": "elements",
+            "targetType": "elements"
+        }
+    },
+    "jumpers": {},
+    "assets": {
+        "647d0495-341f-42b2-8788-b47dace22bf8": {
+            "root": true,
+            "children": []
+        }
+    },
+    "branches": {},
+    "conditions": {},
+    "variables": {
+        "3e53067a-76b1-4726-992c-79d8dad88659": {
+            "name": "has_flag",
+            "type": "boolean",
+            "value": false
+        },
+        "6f6b19c2-f6e2-4cd1-81e2-7f43879d5f10": {
+            "name": "has_tag",
+            "type": "boolean",
+            "value": true
+        },
+        "747d0495-341f-42b2-8788-b47dace22bf8": {
+            "root": true,
+            "children": [
+                "3e53067a-76b1-4726-992c-79d8dad88659",
+                "6f6b19c2-f6e2-4cd1-81e2-7f43879d5f10"
+            ]
+        }
+    },
+    "components": {
+        "220ebafe-54a4-46ef-8d8c-5bebf68dcfe2": {
+            "name": "quest_accepted",
+            "assets": {
+                "cover": {
+                    "file": "delapouite\/funnel",
+                    "type": "icon"
+                }
+            },
+            "attributes": [
+                "e824f416-3086-49d4-8c6b-135753943944"
+            ]
+        },
+        "65005bda-15d0-41c5-867f-68c118829f08": {
+            "name": "Root",
+            "root": true,
+            "children": [
+                "b3c4cfb9-7a63-45c7-ab71-a19682efb025",
+                "eb584033-9f36-4a98-9196-37f69ab1f507"
+            ]
+        },
+        "b3c4cfb9-7a63-45c7-ab71-a19682efb025": {
+            "name": "conditions",
+            "children": [
+                "bda03c40-c114-4e1f-8955-ec6f39f37783",
+                "220ebafe-54a4-46ef-8d8c-5bebf68dcfe2"
+            ]
+        },
+        "bda03c40-c114-4e1f-8955-ec6f39f37783": {
+            "name": "quest_denied",
+            "assets": {
+                "cover": {
+                    "file": "delapouite\/funnel",
+                    "type": "icon"
+                }
+            },
+            "attributes": [
+                "a56f27a4-205c-42d1-8547-43c7bb599084"
+            ]
+        },
+        "e5823a26-08b0-4351-9431-fd9a0edac237": {
+            "name": "send_message",
+            "assets": {
+                "cover": {
+                    "file": "sbed\/select",
+                    "type": "icon"
+                }
+            },
+            "attributes": [
+                "df0bb889-edb1-49fa-9027-438daa483a80"
+            ]
+        },
+        "eb584033-9f36-4a98-9196-37f69ab1f507": {
+            "name": "events",
+            "children": [
+                "e5823a26-08b0-4351-9431-fd9a0edac237"
+            ]
+        }
+    },
+    "attributes": {
+        "a56f27a4-205c-42d1-8547-43c7bb599084": {
+            "name": "tag",
+            "value": {
+                "data": "<p>!quest_accepted<\/p>",
+                "type": "string"
+            }
+        },
+        "df0bb889-edb1-49fa-9027-438daa483a80": {
+            "name": "send",
+            "value": {
+                "data": "<p>\"text\"<\/p>",
+                "type": "string"
+            }
+        },
+        "e824f416-3086-49d4-8c6b-135753943944": {
+            "name": "tag",
+            "value": {
+                "data": "<p>quest_accepted<\/p>",
+                "type": "string"
+            }
+        }
+    },
+    "name": "Testing",
+    "cover": null
+}

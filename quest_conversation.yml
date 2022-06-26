@@ -1,0 +1,104 @@
+conversations:
+  hilde:
+    quester: Hilde
+    first: 1c9841b3-84b7-45a3-b819-03d2a3523bf4
+    NPC_options:
+      1c9841b3-84b7-45a3-b819-03d2a3523bf4:
+        conv_name: Quest_Start
+        conv_text: Hello %player%, nice to see you. Do you have a minute?
+        conv_theme: orange
+        pointers:
+          923cba11-12e0-4ffe-b67c-b44d74844055: Next_Step
+          4dff0be8-9a52-4b03-9101-706704ec6e74: Deny_Quest
+        events:
+          e5823a26-08b0-4351-9431-fd9a0edac237: send_message
+        conditions:
+          220ebafe-54a4-46ef-8d8c-5bebf68dcfe2: quest_accepted
+      5d94addf-ef0c-4808-9b1d-83c29030c9a2:
+        conv_name: Bye
+        conv_text: Thats sad, but maybe next time!
+        conv_theme: orange
+        pointers: {}
+        events: {}
+        conditions: {}
+      5810c0a0-76d0-4894-92e7-37a347ac64e7:
+        conv_name: Quest_Info
+        conv_text: I lost my pouch in the streets around the market. I would be really
+          happy if you find it for me.
+        conv_theme: orange
+        pointers:
+          4dff0be8-9a52-4b03-9101-706704ec6e74: Deny_Quest
+          e245e535-72c5-4da2-bc68-a056f1ceccc3: More_Infos
+          99b27506-15d4-4b83-bfed-77f38ac64dc0: Accept_Quest
+        events: {}
+        conditions:
+          220ebafe-54a4-46ef-8d8c-5bebf68dcfe2: quest_accepted
+          bda03c40-c114-4e1f-8955-ec6f39f37783: quest_denied
+      ad18a06d-2c64-4b4a-bcac-0edfdd5010de:
+        conv_name: More_Info
+        conv_text: I think it was around the well on the west side of the market.
+        conv_theme: orange
+        pointers:
+          99b27506-15d4-4b83-bfed-77f38ac64dc0: Accept_Quest
+        events: {}
+        conditions: {}
+      8f8b2f6c-2a0c-4e4b-ab57-c6c309afdb1a:
+        conv_name: Quest_Accept
+        conv_text: Great! Ill wait here for your return.
+        conv_theme: orange
+        pointers: {}
+        events: {}
+        conditions: {}
+    player_options:
+      e245e535-72c5-4da2-bc68-a056f1ceccc3:
+        conv_name: More_Infos
+        conv_text: Do you remember where?
+        conv_theme: lightBlue
+        pointers:
+          ad18a06d-2c64-4b4a-bcac-0edfdd5010de: More_Info
+        events: {}
+        conditions: {}
+      99b27506-15d4-4b83-bfed-77f38ac64dc0:
+        conv_name: Accept_Quest
+        conv_text: Im on my way!
+        conv_theme: lightBlue
+        pointers:
+          8f8b2f6c-2a0c-4e4b-ab57-c6c309afdb1a: Quest_Accept
+        events: {}
+        conditions: {}
+      4dff0be8-9a52-4b03-9101-706704ec6e74:
+        conv_name: Deny_Quest
+        conv_text: No, sadly not
+        conv_theme: lightBlue
+        pointers:
+          5d94addf-ef0c-4808-9b1d-83c29030c9a2: Bye
+        events: {}
+        conditions: {}
+      923cba11-12e0-4ffe-b67c-b44d74844055:
+        conv_name: Next_Step
+        conv_text: Yes, whats up?
+        conv_theme: lightBlue
+        pointers:
+          5810c0a0-76d0-4894-92e7-37a347ac64e7: Quest_Info
+        events: {}
+        conditions: {}
+conditions:
+  bda03c40-c114-4e1f-8955-ec6f39f37783:
+    component_name: quest_denied
+    component_attributes:
+      a56f27a4-205c-42d1-8547-43c7bb599084:
+        attribute_mechanism: tag
+        attribute_input: '!quest_accepted'
+  220ebafe-54a4-46ef-8d8c-5bebf68dcfe2:
+    component_name: quest_accepted
+    component_attributes:
+      e824f416-3086-49d4-8c6b-135753943944:
+        attribute_mechanism: tag
+        attribute_input: quest_accepted
+events:
+  e5823a26-08b0-4351-9431-fd9a0edac237:
+    component_name: send_message
+    component_attributes:
+      df0bb889-edb1-49fa-9027-438daa483a80:
+        attribute_mechanism: send
+        attribute_input: '"text"'
