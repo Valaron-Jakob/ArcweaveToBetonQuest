@@ -248,25 +248,7 @@
     },
     "branches": {},
     "conditions": {},
-    "variables": {
-        "3e53067a-76b1-4726-992c-79d8dad88659": {
-            "name": "has_flag",
-            "type": "boolean",
-            "value": false
-        },
-        "6f6b19c2-f6e2-4cd1-81e2-7f43879d5f10": {
-            "name": "has_tag",
-            "type": "boolean",
-            "value": true
-        },
-        "747d0495-341f-42b2-8788-b47dace22bf8": {
-            "root": true,
-            "children": [
-                "3e53067a-76b1-4726-992c-79d8dad88659",
-                "6f6b19c2-f6e2-4cd1-81e2-7f43879d5f10"
-            ]
-        }
-    },
+    "variables": {},
     "components": {
         "220ebafe-54a4-46ef-8d8c-5bebf68dcfe2": {
             "name": "quest_accepted",

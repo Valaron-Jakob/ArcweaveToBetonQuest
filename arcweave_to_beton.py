@@ -19,25 +19,40 @@ def getComponentFolder(data, folder_name):
         if data['components'][key]['name'] == folder_name:
             folder = data['components'][key]
             return folder
-        else:
-            folder = None
-    return folder
+    return None
 
-#Input the dataset and the current element to get a dict of target element keys and their respective titles
+
+#Get the name to a corresponding element key
+def getElementName(data, element_key):
+    return data['elements'][element_key]['title'].replace('<p>','').replace('</p>','')
+
+#Get the text to a corresponding element key
+def getElementText(data, element_key):
+    return data['elements'][element_key]['content'].replace('<p>','').replace('</p>','')
+
+#Get the theme to a corresponding element key
+def getElementTheme(data, element_key):
+    return data['elements'][element_key]['theme']
+
+#Input the dataset and the current element key to get a string of target element names
 def getElementPointers(data, element_key):
-    pointers = {}
+    pointers = []
     for key in data['elements'][element_key]['outputs']:
-        target_id = data['connections'][key]['targetid']
-        pointers[target_id] = data['elements'][target_id]['title'].replace('<p>','').replace('</p>','')
-    return pointers
+        pointers.append(getElementName(data, data['connections'][key]['targetid']))
+    return ','.join(pointers)
 
-#Input the dataset, the current element key and the folder string (events, conditions) to get a dict of target keys and their respective titles
+#Get the name to a corresponding component key
+def getComponentName(data, component_key):
+    return data['components'][component_key]['name'].replace('<p>','').replace('</p>','')
+
+#Input the dataset, the current element key and the folder string (events, conditions) to get a string of target component names
 def getComponentPointers(data, element_key, folder):
-    pointers = {}
+    pointers = []
     for key in data['elements'][element_key]['components']:
         if key in getComponentFolder(data, folder)['children']:
-            pointers[key] = data['components'][key]['name'].replace('<p>','').replace('</p>','')
-    return pointers
+            pointers.append(getComponentName(data, key))
+    return ','.join(pointers)
+
 
 #Input the dataset and a folder string (events, conditions) to get a dict of components
 def getFullComponents(data, folder):
@@ -72,32 +87,76 @@ conversation_format = {
 }
 
 
-#Construct a dict with all the conversation options and needed data
-conv_options = {}
+class Conversation:
+    def __init__(self, name: str, quester: str, first: list, npc_options: list, player_options: list):
+        self.name = name
+        self.quester = quester
+        self.first = first
+        self.npc_options = npc_options
+        self.player_options = player_options
 
-for key in data['elements'].keys():
-    conv_option_name = data['elements'][key]['title'].replace('<p>','').replace('</p>','')
-    conv_option_text = data['elements'][key]['content'].replace('<p>','').replace('</p>','')
-    conv_option_theme = data['elements'][key]['theme']
+    def getFormattedConv(self):
+        return {
+            self.name: {
+                'quester': self.quester,
+                'first': ','.join(self.first),
+                'NPC_options': self.npc_options,
+                'player_options': self.player_options
+            }
+        }
 
-    conv_options[key] = {
-        'conv_name': conv_option_name,
-        'conv_text': conv_option_text,
-        'conv_theme': conv_option_theme,
-        'pointers': getElementPointers(data, key),
-        'events': getComponentPointers(data, key, 'events'),
-        'conditions': getComponentPointers(data, key, 'conditions')
-    }
+    def setConvOptions(self, data: dict, npc_color: str, player_color: str):
+        for key in data['elements']:
+            option = ConvOption(
+                key, 
+                getElementName(data, key),
+                getElementText(data, key),
+                getElementPointers(data, key),
+                getComponentPointers(data, key, 'conditions'),
+                getComponentPointers(data, key, 'events')
+            )
+
+            if getElementTheme(data, key) == npc_color:
+                self.npc_options = self.npc_options.append(option)
+            if getElementTheme(data, key) == player_color:
+                self.player_options = self.player_options.append(option)
+
+class ConvOption:
+    def __init__(self, key: str, name: str, text: str, pointers: str, conditions: str, events: str):
+        self.key = key
+        self.name = name
+        self.text = text
+        self.pointers = pointers
+        self.conditions = conditions
+        self.events = events
+    
+    def getFormattedOption(self):
+        return {
+            self.name: {
+                'text': self.text,
+                'pointers': self.pointers,
+                'conditions': self.conditions,
+                'events': self.events
+            }
+        }
 
 
-npc_color       = 'orange'
-player_color    = 'lightBlue'
+conversation = Conversation(
+    quester_name.lower().replace(' ','_'),
+    quester_name,
+    data['elements'][data['startingElement']],
+    [],
+    []
+)
 
-for key in conv_options.keys():
-    if conv_options[key]['conv_theme'] == npc_color:
-        conversation_format['conversations'][quester_name_snake]['NPC_options'][key] = conv_options[key]
-    if conv_options[key]['conv_theme'] == player_color:
-        conversation_format['conversations'][quester_name_snake]['player_options'][key] = conv_options[key]
+conversation.setConvOptions()
+
+
+
+
+
+
+
 
 
 #Final conversation parser
