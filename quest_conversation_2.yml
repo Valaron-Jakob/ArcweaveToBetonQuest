@@ -1,0 +1,57 @@
+conversations:
+  hildegart:
+    quester: Hildegart
+    first: Quest_Start
+    NPC_options:
+      Quest_Start:
+        text: Hello %player%, nice to see you. Do you have a minute?
+        pointers: Next_Step,Deny_Quest
+        conditions: quest_accepted
+        events: send_message
+      Bye:
+        text: Thats sad, but maybe next time!
+        pointers: ''
+        conditions: ''
+        events: ''
+      Quest_Info:
+        text: I lost my pouch in the streets around the market. I would be really
+          happy if you find it for me.
+        pointers: Deny_Quest,More_Infos,Accept_Quest
+        conditions: quest_accepted,quest_denied
+        events: ''
+      More_Info:
+        text: I think it was around the well on the west side of the market.
+        pointers: Accept_Quest
+        conditions: ''
+        events: ''
+      Quest_Accept:
+        text: Great! Ill wait here for your return.
+        pointers: ''
+        conditions: ''
+        events: ''
+    player_options:
+      More_Infos:
+        text: Do you remember where?
+        pointers: More_Info
+        conditions: ''
+        events: ''
+      Accept_Quest:
+        text: Im on my way!
+        pointers: Quest_Accept
+        conditions: ''
+        events: ''
+      Deny_Quest:
+        text: No, sadly not
+        pointers: Bye
+        conditions: ''
+        events: ''
+      Next_Step:
+        text: Yes, whats up?
+        pointers: Quest_Info
+        conditions: ''
+        events: ''
+conditions:
+  quest_denied: tag !quest_accepted
+  quest_accepted: tag quest_accepted
+events:
+  send_message: send "text"
